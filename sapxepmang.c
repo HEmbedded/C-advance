@@ -32,7 +32,7 @@ struct typeArr *NhapThongTin()
 
 
 
-struct typeArr bedenlon(struct typeArr *Arr)
+void bedenlon(struct typeArr *Arr)
 {
     int temp;
     for (int i = 0; i < (Arr->size)-1; i++)
@@ -55,7 +55,7 @@ struct typeArr bedenlon(struct typeArr *Arr)
     }        
 }
 
-struct typeArr londenbe(struct typeArr *Arr)
+void londenbe(struct typeArr *Arr)
 {
     int temp;
     for (int i = 0; i < (Arr->size)-1; i++)
