@@ -25,8 +25,10 @@ void nhapThongTin(typeBox *mang)
     
     mang->ptr = (VO*)malloc(mang->size * sizeof(VO));
     
+    printf("Gia tri: VO_DO  , VO_XANH   , VO_VANG\n");
     for (int i = 0; i < mang->size; i++)
-    {       
+    {   
+        
         label:
         printf("Nhap gia tri cua arr[%d]: ",i);
         scanf("%s",name);     
