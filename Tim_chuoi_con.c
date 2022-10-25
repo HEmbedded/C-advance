@@ -1,6 +1,7 @@
+// Tìm chuỗi con trong chuỗi mẹ không dùng thư viện string.h
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+
 
 // Kiểu dữ liệu của mảng
 typedef struct{
