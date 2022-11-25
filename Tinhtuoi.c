@@ -53,7 +53,7 @@ int main(int argc, char const *argv[])
     scanf("%d",&monthnow);
     printf("Nam: ");
     scanf("%d",&yearnow);
-    printf("%d\n",yearnow%4);
+    
 
     //Kiểm tra ngày tháng năm nhập có hợp lệ ? Nếu không sẽ nhập lại chỗ sai
     while (1)
