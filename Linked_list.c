@@ -95,23 +95,18 @@ void Delete_at(NODE **list, int position)
     NODE* temp = *list;
     if (temp == NULL)
     {
-        printf("Khong co phan tu nao trong danh sach de xoa");
-        
+        printf("Khong co phan tu nao trong danh sach de xoa");        
     }
     
     // Nếu xóa ở vị trí đầu
     if (position == 0) 
-    {
-        
+    {       
         printf("Ban dang xoa vi tri dau danh sach...\n");
         // Cho địa chỉ của list bằng với địa chỉ node kế tiếp
-        *list = temp->next;
-        
+        *list = temp->next;      
  
         // giải phóng địa chỉ lúc đầu của list, cũng chính là địa chỉ của biến tạm
-        free(temp);
-
-        
+        free(temp);       
     }
     else
     {
@@ -122,7 +117,6 @@ void Delete_at(NODE **list, int position)
             temp = temp->next;
         }
         
- 
         // Nếu vị trí tìm nằm ngoài số node hiện tại (Địa chỉ node hiện tại = NULL hoặc địa chỉ node kế tiếp bằng null)
         if (temp == NULL || temp->next == NULL)
         {
@@ -140,10 +134,49 @@ void Delete_at(NODE **list, int position)
         // Sửa địa chỉ của node kế tiếp của node hiện tại bằng node đã lưu tạm trước đó
         temp->next = next;
         
-    }
-  
+    } 
 }
 
+//Hàm thêm giá trị vào vị trí bất kì
+void Insert_at(NODE **list, int position, int value)
+{
+    
+    //tạo 1 con trỏ tạm, tránh mất địa chỉ con trỏ đầu của List
+    NODE* temp = *list;
+    
+    // Nếu thêm ở vị trí đầu
+    if (position == 0) 
+    {       
+        NODE *newnode = createNODE(value); //tạo một node mới với giá trị được truyền vào
+        newnode->next = temp;              //Địa chỉ next của node vừa tạo sẽ bằng với vị trí node đầu của list
+        *list = newnode;                    //Thay đổi địa chỉ đầu của list bằng địa chỉ của node vừa tạo;
+    }   
+    else
+    {
+        //Nếu không phải node đầu
+        // Tìm node trước node cần được thêm
+        for (int i = 0; temp != NULL && i < position - 1; i++)
+        {
+            temp = temp->next;
+        }
+        
+        // Nếu vị trí tìm nằm ngoài số node hiện tại (Địa chỉ node hiện tại = NULL hoặc địa chỉ node kế tiếp bằng null)
+        if (temp == NULL || temp->next == NULL)
+        {
+            printf("Vi tri nay khong co gia tri\n");
+            return;
+        }
+        
+        //Sau khi tìm được thì ta tạo node mới với giá trị được đưa vào
+        NODE *newnode = createNODE(value);
+
+        //Địa chỉ next của node vừa tạo sẽ cho bằng với vị trí của node vừa dừng
+        newnode->next = temp->next;
+
+        //Sửa địa chỉ next của node dừng hiện tại bằng với node vừa tạo 
+        temp->next = newnode;        
+    } 
+}
 
 // Hàm xóa hết tất cả phần tử của danh sách
 void clear_list (NODE **List)
@@ -262,6 +295,12 @@ int main(int argc, char const *argv[])
     printf("Xoa gia tri thu %d (dem tu 0) cua danh sach\n",2);
     Delete_at(&list1,2);
     All_value_of_list(list1);
+
+    //Thử hàm thêm giá trị tại 1 vị trí bất kì của danh sách
+    printf("them gia tri %d vao vi tri thu %d (dem tu 0) cua danh sach\n",10,3);
+    Insert_at(&list1,3,10);
+    All_value_of_list(list1);
+
 
     //Thử hàm xóa tất cả các danh sách
     printf("Xoa tat ca phan tu trong danh sach...\n");
